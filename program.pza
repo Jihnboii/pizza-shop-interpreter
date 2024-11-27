@@ -1,0 +1,3 @@
+make_pizza(size="Large", crust="Thin")
+add_topping("Cheese")
+add_topping("Pepperoni")
