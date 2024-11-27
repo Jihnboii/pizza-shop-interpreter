@@ -1,4 +1,4 @@
-from nodes import MakePizzaNode, AddToppingNode
+from nodes import MakePizzaNode, AddToppingNode, BakePizzaNode, SlicePizzaNode, DeliverPizzaNode
 
 
 class Parser:
@@ -25,10 +25,18 @@ class Parser:
 
     def parse_command(self):
         token = self.peek()
+        if token is None:
+            raise Exception("Syntax Error: Unexpected end of input")
         if token[1] == "make_pizza":
             return self.parse_make_pizza()
         elif token[1] == "add_topping":
             return self.parse_add_topping()
+        elif token[1] == "bake":
+            return self.parse_bake()
+        elif token[1] == "slice":
+            return self.parse_slice()
+        elif token[1] == "deliver":
+            return self.parse_deliver()
         else:
             raise Exception(f"Syntax Error: Unknown command '{token[1]}'")
 
@@ -51,6 +59,25 @@ class Parser:
         topping = self.expect("STRING")[1].strip('"')
         self.expect("OPERATOR", ")")
         return AddToppingNode(topping)
+
+    def parse_bake(self):
+        self.advance()  # Skip 'bake'
+        self.expect("OPERATOR", "(")  # Consume '('
+        self.expect("OPERATOR", ")")  # Consume ')'
+        return BakePizzaNode()
+
+    def parse_slice(self):
+        self.advance()  # Skip 'slice'
+        self.expect("OPERATOR", "(")
+        pieces = int(self.expect("NUMBER")[1])  # Get the number of slices
+        self.expect("OPERATOR", ")")
+        return SlicePizzaNode(pieces)
+
+    def parse_deliver(self):
+        self.advance()  # Skip 'deliver' keyword
+        self.expect("OPERATOR", "(")  # Consume '('
+        self.expect("OPERATOR", ")")  # Consume ')'
+        return DeliverPizzaNode()
 
     def expect(self, token_type, token_value=None):
         token = self.peek()
