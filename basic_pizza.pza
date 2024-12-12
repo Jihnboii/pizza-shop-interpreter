@@ -1,0 +1,6 @@
+let crust = "Thin"
+make_pizza(size="Large", crust=crust)
+add_topping("Pepperoni")
+bake()
+slice(8)
+deliver()

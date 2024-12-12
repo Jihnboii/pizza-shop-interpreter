@@ -1,0 +1,9 @@
+let crust = "Thin"
+make_pizza(size="Small", crust=crust)
+if crust == "Thin":
+    add_topping("Olives")
+    repeat 2:
+        add_topping("Mushrooms")
+bake()
+slice(4)
+deliver()

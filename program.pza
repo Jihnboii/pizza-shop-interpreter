@@ -1,5 +1,0 @@
-make_pizza(size="Large", crust="Thin")
-add_topping("Cheese")
-bake()
-slice(8)
-deliver()

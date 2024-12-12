@@ -8,9 +8,9 @@ class Lexer:
         self.token_spec = [
             ("NUMBER", r"\d+"),
             ("STRING", r"\".*?\""),
-            ("KEYWORD", r"make_pizza|add_topping|bake|slice|deliver"),
+            ("KEYWORD", r"make_pizza|add_topping|bake|slice|deliver|let|if|repeat"),
             ("IDENTIFIER", r"[a-zA-Z_][a-zA-Z0-9_]*"),
-            ("OPERATOR", r"[=(),]"),
+            ("OPERATOR", r"[=(),:]"),
             ("NEWLINE", r"\n"),
             ("SKIP", r"[ \t]+"),
         ]

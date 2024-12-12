@@ -10,6 +10,8 @@ This project is a custom interpreter for a pizza-themed programming language. It
 - Bake the pizza.
 - Slice the pizza into pieces.
 - Deliver the pizza with details about its size, crust, and toppings.
+- Menu system to dynamically select `.pza` files to execute.
+- Handles syntax and runtime errors gracefully.
 
 ---
 
@@ -27,44 +29,45 @@ This project is a custom interpreter for a pizza-themed programming language. It
 ---
 
 ## How to Use
-1. Create a `.pza` file with your pizza commands. Example:
-    ```plaintext
-    make_pizza(size="Large", crust="Thin")
-    add_topping("Cheese")
-    bake()
-    slice(8)
-    deliver()
-    ```
+1. Place your `.pza` files in the same directory as `interpreter.py`.
 2. Run the interpreter:
     ```bash
     python interpreter.py
     ```
-3. The program reads the `.pza` file and executes the commands in sequence.
+3. Select a `.pza` file from the menu to execute it.
+4. After execution, the menu will reappear, allowing you to run another file or exit the interpreter.
 
----
-
-## Example Output
-For the `.pza` file:
+### Example `.pza` File
 ```plaintext
-make_pizza(size="Large", crust="Thin")
+let crust = "Thin"
+make_pizza(size="Large", crust=crust)
 add_topping("Cheese")
 bake()
 slice(8)
 deliver()
 ```
 
-The interpreter will output:
+---
+
+## Example Output
+For the above `.pza` file, the interpreter will output:
 ```plaintext
+Variable 'crust' set to 'Thin'
 Making a Large pizza with Thin crust.
 Added topping: Cheese
-Baking the pizza...
+Baking the pizza: Large with Thin crust.
 Slicing the pizza into 8 pieces.
+Pizza sliced successfully!
 Delivering the pizza: Large with Thin crust and toppings: Cheese.
 ```
 
 ---
 
 ## Command Reference
+### `let variable = "value"`
+- Declares a variable that can be used in subsequent commands.
+- Example: `let crust = "Thin"`
+
 ### `make_pizza(size="Size", crust="Crust")`
 - Starts a new pizza with the given size and crust type.
 - Example: `make_pizza(size="Large", crust="Thin")`
@@ -82,6 +85,16 @@ Delivering the pizza: Large with Thin crust and toppings: Cheese.
 
 ### `deliver()`
 - Delivers the pizza. Prints out the pizza's size, crust, and toppings.
+
+---
+
+## Error Handling
+- **Syntax Errors**:
+  - Clearly indicate issues such as missing values, unknown commands, or incomplete statements.
+  - Example: `Syntax Error: Expected STRING, but got NEWLINE`.
+- **Runtime Errors**:
+  - Handle invalid inputs like unsupported sizes, crusts, or toppings gracefully.
+  - Example: `Runtime Error: Invalid topping 'Pineapple'. Valid toppings are: Pepperoni, Cheese, Mushrooms, Olives, Sausage, Bacon, Peppers`.
 
 ---
 

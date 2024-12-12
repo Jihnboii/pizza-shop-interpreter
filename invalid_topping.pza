@@ -1,0 +1,5 @@
+let crust = "Regular"
+make_pizza(size="Medium", crust=crust)
+add_topping("Pineapple")
+bake()
+deliver()

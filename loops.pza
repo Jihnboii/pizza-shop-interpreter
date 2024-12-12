@@ -1,0 +1,7 @@
+let crust = "Thick"
+make_pizza(size="Large", crust=crust)
+repeat 3:
+    add_topping("Cheese")
+bake()
+slice(10)
+deliver()
